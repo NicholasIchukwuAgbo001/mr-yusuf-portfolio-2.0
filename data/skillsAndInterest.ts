@@ -10,8 +10,6 @@ export const skills: string[] = [
     "Kubernetes",
     "AWS",
     "OOP",
-  "Microservices",
-  "Agile Methodologies",
   "Git",
 "CI/CD",
   "HTML",
