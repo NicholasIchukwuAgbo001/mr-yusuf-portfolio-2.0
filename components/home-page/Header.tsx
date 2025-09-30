@@ -56,7 +56,7 @@ const Header = () => {
 
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm md:hidden z-40 animate-fadeIn"
+          className="fixed  backdrop-blur-sm md:hidden z-40 animate-fadeIn"
           onClick={() => setIsOpen(false)}
         />
       )}
