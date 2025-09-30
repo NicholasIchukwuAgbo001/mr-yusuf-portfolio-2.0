@@ -32,17 +32,20 @@ const Header = () => {
       </div>
 
       <div
-        className={`fixed top-0 left-0 h-full w-64 shadow-lg transform transition-transform duration-300 md:hidden ${
+        className={`fixed top-0 left-0 h-screen w-64 bg-background shadow-lg transform transition-transform duration-300 md:hidden z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-6 pt-20 bg-background">
+        <div className="p-6 pt-20 h-full overflow-y-auto">
           <Navbar onLinkClick={() => setIsOpen(false)} />
         </div>
       </div>
 
       {isOpen && (
-        <div className="fixed md:hidden" onClick={() => setIsOpen(false)} />
+        <div
+          className="fixed inset-0 bg-black/40 md:hidden z-40"
+          onClick={() => setIsOpen(false)}
+        />
       )}
     </header>
   );
