@@ -18,7 +18,6 @@ export default function SelectedProjects() {
   return (
     <section className="text-white py-10 md:py-16">
       <div className="container mx-auto px-6">
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wide">
             Selected Project
@@ -28,7 +27,6 @@ export default function SelectedProjects() {
           </span>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid gap-10 md:grid-cols-3">
           {visibleProjects.map((project, idx) => (
             <Link
@@ -40,7 +38,7 @@ export default function SelectedProjects() {
                          transform transition-transform duration-300 
                          hover:scale-105 hover:shadow-2xl p-4 bg-background/30 shadow-md overflow-hidden"
             >
-              {/* Project Image */}
+
               <div className="relative w-full h-56 mb-6 rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src={project.image}
@@ -48,7 +46,6 @@ export default function SelectedProjects() {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110 cursor-pointer"
                 />
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <span className="text-white text-sm font-medium">
                     👉 Click to view source code on GitHub
@@ -56,17 +53,14 @@ export default function SelectedProjects() {
                 </div>
               </div>
 
-              {/* Title */}
               <h3 className="text-xl font-semibold">
                 {project.title} | {project.year}
               </h3>
 
-              {/* Description */}
               <p className="mt-3 text-grey text-sm leading-relaxed">
                 {project.description}
               </p>
 
-              {/* Tech Stack */}
               <ul className="mt-4 flex flex-wrap justify-center gap-2">
                 {project.tech?.map((t, i) => (
                   <li
