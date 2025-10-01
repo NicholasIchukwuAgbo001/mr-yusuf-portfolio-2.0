@@ -19,7 +19,6 @@ const TechStack = () => {
         Technologies I Work With
       </h2>
 
-      {/* Skills Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {visibleSkills.map((skill, index) => (
           <div
@@ -31,7 +30,6 @@ const TechStack = () => {
         ))}
       </div>
 
-      {/* Pagination Button */}
       {hasMore && (
         <div className="flex justify-center mt-8">
           <button

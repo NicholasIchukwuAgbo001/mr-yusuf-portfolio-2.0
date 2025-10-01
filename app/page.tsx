@@ -9,7 +9,7 @@ const Home = () => {
         <HeroText />
         <HeroImage />
       </section>
-      <section className="mt-8 p-8 px-16">
+      <section className="py-5 px-20">
         <TechStack />
       </section>
     </main>

@@ -1,12 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "./Navbar";
 import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const sidebar = document.getElementById("mobile-sidebar");
+      const menuButton = document.getElementById("menu-button");
+
+      if (
+        isOpen &&
+        sidebar &&
+        !sidebar.contains(event.target as Node) &&
+        menuButton &&
+        !menuButton.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (isOpen && event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-lg border-b border-white/10 shadow-xl header-glow">
@@ -26,9 +61,13 @@ const Header = () => {
         </div>
 
         <button
+          id="menu-button"
           className="md:hidden text-white hover:text-secondary transition-all duration-300 focus:outline-none cursor-pointer p-2 rounded-lg hover:bg-white/10 group"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
+          {...(isOpen
+            ? { "aria-expanded": "true" }
+            : { "aria-expanded": "false" })}
         >
           {isOpen ? (
             <X
@@ -44,21 +83,25 @@ const Header = () => {
         </button>
       </div>
 
-      <div
-        className={`fixed top-0 left-0 h-screen w-64 bg-background/95 backdrop-blur-lg shadow-2xl transform transition-all duration-300 md:hidden z-50 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="p-6 pt-20 h-full overflow-y-auto">
-          <Navbar onLinkClick={() => setIsOpen(false)} />
-        </div>
-      </div>
-
       {isOpen && (
-        <div
-          className="fixed  backdrop-blur-sm md:hidden z-40 animate-fadeIn"
-          onClick={() => setIsOpen(false)}
-        />
+        <>
+          <div
+            id="mobile-sidebar"
+            className={`fixed top-0 left-0 h-screen w-64 bg-background/95 backdrop-blur-lg shadow-2xl transform transition-all duration-300 ease-in-out md:hidden z-50 ${
+              isOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
+          >
+            <div className="p-6 pt-20 h-full overflow-y-auto">
+              <Navbar onLinkClick={() => setIsOpen(false)} />
+            </div>
+          </div>
+
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden z-40 transition-opacity duration-300"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+        </>
       )}
     </header>
   );
