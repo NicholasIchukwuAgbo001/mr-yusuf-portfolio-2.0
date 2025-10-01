@@ -44,7 +44,7 @@ const Header = () => {
   }, [isOpen]);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-9999 border-b border-white/10 shadow-xl header-glow">
+    <header className="fixed top-0 left-0 w-full z-9999 border-b border-white/10 shadow-xl header-glow bg-background/50 backdrop-blur-lg ">
       <div className="mx-auto flex items-center justify-between px-6 md:px-10 py-4">
         <Link
           href="/"
