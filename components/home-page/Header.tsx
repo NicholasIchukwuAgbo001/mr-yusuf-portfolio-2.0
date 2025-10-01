@@ -44,7 +44,7 @@ const Header = () => {
   }, [isOpen]);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-lg border-b border-white/10 shadow-xl header-glow">
+    <header className="fixed top-0 left-0 w-full z-9999 border-b border-white/10 shadow-xl header-glow">
       <div className="mx-auto flex items-center justify-between px-6 md:px-10 py-4">
         <Link
           href="/"
@@ -87,7 +87,7 @@ const Header = () => {
         <>
           <div
             id="mobile-sidebar"
-            className={`fixed top-0 left-0 h-screen w-64 bg-background/95 backdrop-blur-lg shadow-2xl transform transition-all duration-300 ease-in-out md:hidden z-50 ${
+            className={`fixed top-0 left-0 h-screen w-64 bg-background/95 backdrop-blur-lg shadow-2xl transform transition-all duration-300 ease-in-out md:hidden z-9999 ${
               isOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
@@ -97,7 +97,7 @@ const Header = () => {
           </div>
 
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden z-40 transition-opacity duration-300"
+            className="fixed inset-0 bg-black/50 md:hidden z-40 transition-opacity duration-300"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
